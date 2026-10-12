@@ -1,0 +1,16 @@
+SKINLOGIC WEB V1 — OBJAVA NA GITHUB + CLOUDFLARE PAGES
+
+1. Raspakiraj SKINLOGIC_WEB_V1.zip.
+2. Na GitHubu izradi novi repozitorij i dodaj SVE datoteke i mape iz raspakirane arhive.
+3. Cloudflare -> Workers & Pages -> Create -> Pages -> Connect to Git.
+4. Odaberi GitHub repozitorij i postavi:
+   Framework preset: None
+   Build command: (ostavi prazno za demo)
+   Build output directory: dist
+5. Klikni Save and Deploy.
+6. Otvori dodijeljenu Cloudflare Pages adresu (demo web je privremeno noindex).
+7. Kada potvrdiš telefon, e-mail, cjenik, pravne podatke, domenu i stručne sadržaje,
+   pogledaj README.md za aktivaciju rezervacijskog obrasca i produkcijskog SEO-a.
+
+NAPOMENA: Slanje upita nije aktivno dok nije konfigurirana službena e-mail adresa
+salona. AI vizuali predstavljaju ilustraciju zamišljenog prostora, ne stvarne slike salona.
