@@ -216,7 +216,11 @@ def generate():
   for s in SERVICES:
    p=path(lang,'services',s['slug']);write(p,layout(lang,'services',s[lang],s[f'{lang}_short'],treatment_page(lang,s),s['slug'],s['image']));routes.append(p)
  # Root redirects to localized Croatian version, uses relative URL to retain nested deployment support.
- (DIST/'index.html').write_text('<!doctype html><html lang="hr"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/hr/"><meta name="robots" content="noindex"><title>Skinlogic</title></head><body><p><a href="/hr/">Skinlogic — Nastavi na web stranicu</a></p></body></html>',encoding='utf-8')
+  # Root: redirect at Cloudflare edge; real homepage as fallback on local servers.
+  (DIST/'_redirects').write_text('/ /hr/ ' + ('301' if SITE_URL else '302') + '\\n', encoding='utf-8')
+  hr_home = (DIST/'hr'/'index.html').read_text(encoding='utf-8')
+  hr_home = hr_home.replace('</head>', '<link rel="canonical" href="/hr/"></head>', 1)
+  (DIST/'index.html').write_text(hr_home, encoding='utf-8')
  (DIST/'404.html').write_text('<!doctype html><html lang="hr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>404 — Skinlogic</title><link rel="stylesheet" href="/assets/styles.css"></head><body><main class="not-found"><div><p class="eyebrow">404 / SKINLOGIC</p><h1>Stranica nije pronađena.</h1><p>Page not found.</p><a href="/hr/" class="button button--primary">Povratak na početnu ↗</a></div></main></body></html>',encoding='utf-8')
  if SITE_URL:
   from xml.sax.saxutils import escape as x
